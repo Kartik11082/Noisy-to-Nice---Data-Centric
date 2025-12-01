@@ -109,6 +109,34 @@ class ApiService {
             return { success: false, message: error.message };
         }
     }
+
+    async analyzeFile(fileId) {
+        try {
+            const response = await fetch(`${API_URL}/api/analyze/${fileId}`, {
+                method: 'POST',
+                headers: this.getHeaders()
+            });
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            return { success: false, message: error.message };
+        }
+    }
+
+    async getAnalysis(fileId) {
+        try {
+            const response = await fetch(`${API_URL}/api/analysis/${fileId}`, {
+                method: 'GET',
+                headers: this.getHeaders()
+            });
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            return { success: false, message: error.message };
+        }
+    }
 }
 
 export default new ApiService();

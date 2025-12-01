@@ -52,6 +52,42 @@ class S3Service:
                 'message': f'Failed to upload to S3: {str(e)}'
             }
     
+    def upload_fileobj(self, file_obj, s3_key, content_type='application/octet-stream'):
+        """
+        Upload any file object to S3 with custom key
+        
+        Args:
+            file_obj: File-like object to upload
+            s3_key: S3 key/path for the file
+            content_type: MIME type
+            
+        Returns:
+            dict: Contains success status, s3_key, and s3_url
+        """
+        try:
+            # Upload to S3
+            self.s3_client.upload_fileobj(
+                file_obj,
+                self.bucket_name,
+                s3_key,
+                ExtraArgs={'ContentType': content_type}
+            )
+            
+            # Generate S3 URL
+            s3_url = f"https://{self.bucket_name}.s3.{Config.get_aws_credentials()['region_name']}.amazonaws.com/{s3_key}"
+            
+            return {
+                'success': True,
+                's3_key': s3_key,
+                's3_url': s3_url
+            }
+            
+        except Exception as e:
+            return {
+                'success': False,
+                'message': f'Failed to upload to S3: {str(e)}'
+            }
+    
     def delete_file(self, s3_key):
         """Delete a file from S3"""
         try:

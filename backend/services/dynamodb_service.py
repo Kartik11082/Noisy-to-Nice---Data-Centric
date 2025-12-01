@@ -46,6 +46,40 @@ class DynamoDBService:
             if 'columns' in metadata:
                 item['columns'] = metadata['columns']
             
+            # Add profiling metadata if available
+            if 'profiling_status' in metadata:
+                item['profiling_status'] = metadata['profiling_status']
+            if 'profiling_report_url' in metadata:
+                item['profiling_report_url'] = metadata['profiling_report_url']
+            if 'profiling_report_key' in metadata:
+                item['profiling_report_key'] = metadata['profiling_report_key']
+            if 'quality_score' in metadata:
+                item['quality_score'] = Decimal(str(metadata['quality_score']))
+            if 'missing_percentage' in metadata:
+                item['missing_percentage'] = Decimal(str(metadata['missing_percentage']))
+            if 'duplicate_rows_count' in metadata:
+                item['duplicate_rows_count'] = Decimal(str(metadata['duplicate_rows_count']))
+            if 'issues' in metadata:
+                item['issues'] = metadata['issues']
+            if 'ai_insights' in metadata:
+                item['ai_insights'] = metadata['ai_insights']
+            if 'profiling_metrics' in metadata:
+                # Convert metrics to DynamoDB-compatible format
+                metrics = metadata['profiling_metrics']
+                db_metrics = {}
+                for key, value in metrics.items():
+                    if isinstance(value, (int, float)):
+                        db_metrics[key] = Decimal(str(value))
+                    elif isinstance(value, dict):
+                        # Convert nested dict (like missing_by_column)
+                        nested = {}
+                        for k, v in value.items():
+                            nested[k] = Decimal(str(v)) if isinstance(v, (int, float)) else v
+                        db_metrics[key] = nested
+                    else:
+                        db_metrics[key] = value
+                item['profiling_metrics'] = db_metrics
+            
             # Store in DynamoDB
             self.table.put_item(Item=item)
             

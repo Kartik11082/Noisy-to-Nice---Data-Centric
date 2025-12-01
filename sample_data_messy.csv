@@ -1,0 +1,21 @@
+id,name,age,salary,department,years_experience,performance_score,city
+1,John Doe,28,50000,Engineering,5,85,New York
+2,Jane Smith,,65000,Marketing,8,92,San Francisco
+3,Bob Johnson,45,,Engineering,15,88,
+4,Alice Brown,29,55000,Sales,,90,Boston
+5,Charlie Davis,31,60000,,7,,Chicago
+6,Eve Wilson,35,58000,Sales,9,91,Austin
+7,Frank Miller,42,72000,Engineering,14,89,Denver
+8,Grace Lee,,70000,Engineering,12,94,Portland
+9,Henry Taylor,39,,Marketing,10,86,
+10,Ivy Anderson,26,48000,Sales,3,82,Atlanta
+11,John Doe,28,50000,Engineering,5,85,New York
+12,Kelly White,41,76000,Engineering,,93,Phoenix
+13,Liam Green,,54000,Sales,5,,Houston
+14,Mia Blue,36,,Marketing,11,90,
+15,Noah Black,44,78000,Engineering,18,95,San Diego
+16,Jane Smith,,65000,Marketing,8,92,San Francisco
+17,Oliver Gray,32,,,6,87,Seattle
+18,,,52000,Sales,4,83,Miami
+19,Quinn Yellow,38,69000,Marketing,,88,Dallas
+20,Ryan Purple,,,Engineering,13,91,

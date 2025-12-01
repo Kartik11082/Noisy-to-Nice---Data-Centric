@@ -1,0 +1,21 @@
+id,name,age,salary,department,years_experience,performance_score,city,education
+1,John Doe,28,50000,Engineering,5,85,New York,Bachelor
+2,Jane Smith,34,65000,Marketing,8,92,San Francisco,Master
+3,Bob Johnson,45,75000,Engineering,15,88,Seattle,PhD
+4,Alice Brown,29,55000,Sales,6,90,Boston,Bachelor
+5,Charlie Davis,31,,Marketing,7,87,Chicago,Master
+6,Eve Wilson,35,58000,Sales,9,91,Austin,Bachelor
+7,Frank Miller,42,72000,Engineering,,89,Denver,Master
+8,Grace Lee,37,70000,Engineering,12,94,Portland,PhD
+9,Henry Taylor,39,68000,Marketing,10,86,Miami,
+10,Ivy Anderson,26,48000,Sales,3,82,Atlanta,Bachelor
+11,Jack Brown,33,62000,Marketing,8,88,Dallas,Master
+12,Kelly White,41,76000,Engineering,16,93,Phoenix,Bachelor
+13,Liam Green,30,,Sales,5,84,Houston,
+14,Mia Blue,36,66000,Marketing,11,90,Philadelphia,Master
+15,Noah Black,44,78000,Engineering,18,95,San Diego,PhD
+16,Oliver Gray,32,61000,Sales,6,86,Seattle,Bachelor
+17,Paula Red,38,69000,Marketing,9,,Boston,Master
+18,Quinn Yellow,29,53000,Sales,4,83,Chicago,
+19,Ryan Purple,43,74000,Engineering,15,91,Austin,PhD
+20,Sarah Orange,35,64000,Marketing,10,89,Denver,Master

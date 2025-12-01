@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import './FileUpload.css';
 
@@ -8,6 +9,7 @@ export default function FileUpload({ username, onLogout }) {
     const [uploading, setUploading] = useState(false);
     const [dragActive, setDragActive] = useState(false);
     const [message, setMessage] = useState({ type: '', text: '' });
+    const navigate = useNavigate();
 
     useEffect(() => {
         loadFiles();
@@ -49,7 +51,6 @@ export default function FileUpload({ username, onLogout }) {
     };
 
     const handleFileUpload = async (file) => {
-        // Validate file type
         if (!file.name.toLowerCase().endsWith('.csv')) {
             setMessage({ type: 'error', text: 'Only CSV files are allowed' });
             return;
@@ -64,8 +65,6 @@ export default function FileUpload({ username, onLogout }) {
             if (result.success) {
                 setMessage({ type: 'success', text: 'File uploaded successfully!' });
                 loadFiles();
-
-                // Clear message after 3 seconds
                 setTimeout(() => setMessage({ type: '', text: '' }), 3000);
             } else {
                 setMessage({ type: 'error', text: result.message || 'Upload failed' });
@@ -223,6 +222,12 @@ export default function FileUpload({ username, onLogout }) {
                                 )}
 
                                 <div className="file-actions">
+                                    <button
+                                        onClick={() => navigate(`/analysis/${file.file_id}`)}
+                                        className="btn btn-primary btn-sm"
+                                    >
+                                        📊 Analyze Quality
+                                    </button>
                                     <a
                                         href={file.s3_url}
                                         target="_blank"

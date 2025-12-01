@@ -1,7 +1,15 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from 'react-router-dom';
 import Auth from './components/Auth';
 import FileUpload from './components/FileUpload';
+import DataQuality from './components/DataQuality';
 import api from './services/api';
+
+// Analysis page wrapper
+function AnalysisPage() {
+    const { fileId } = useParams();
+    return <DataQuality fileId={fileId} />;
+}
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -11,8 +19,6 @@ function App() {
         // Check if user is already logged in
         const token = localStorage.getItem('token');
         if (token) {
-            const result = api.verify_token ? api.verify_token(token) : null;
-            // For now, just check if token exists
             setIsAuthenticated(true);
         }
     }, []);
@@ -28,14 +34,17 @@ function App() {
         setIsAuthenticated(false);
     };
 
+    if (!isAuthenticated) {
+        return <Auth onLogin={handleLogin} />;
+    }
+
     return (
-        <>
-            {isAuthenticated ? (
-                <FileUpload username={username} onLogout={handleLogout} />
-            ) : (
-                <Auth onLogin={handleLogin} />
-            )}
-        </>
+        <Router>
+            <Routes>
+                <Route path="/" element={<FileUpload username={username} onLogout={handleLogout} />} />
+                <Route path="/analysis/:fileId" element={<AnalysisPage />} />
+            </Routes>
+        </Router>
     );
 }
 
